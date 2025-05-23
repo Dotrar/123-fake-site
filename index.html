@@ -1,312 +1,554 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+
+<html lang="en">
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.5">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #4689cc; -webkit-text-stroke: #4689cc}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #8cd3fe; -webkit-text-stroke: #8cd3fe}
-    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #c27e65; -webkit-text-stroke: #c27e65}
-    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #cacaca; -webkit-text-stroke: #cacaca}
-    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #6d7378; -webkit-text-stroke: #6d7378}
-    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #a7c598; -webkit-text-stroke: #a7c598}
-    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #cacaca; -webkit-text-stroke: #cacaca; min-height: 16.0px}
-    span.s1 {font-kerning: none; background-color: #171818}
-    span.s2 {font-kerning: none; color: #8cd3fe; background-color: #171818; -webkit-text-stroke: 0px #8cd3fe}
-    span.s3 {font-kerning: none; color: #6d6d6d; background-color: #171818; -webkit-text-stroke: 0px #6d6d6d}
-    span.s4 {font-kerning: none; color: #cacaca; background-color: #171818; -webkit-text-stroke: 0px #cacaca}
-    span.s5 {font-kerning: none; color: #c27e65; background-color: #171818; -webkit-text-stroke: 0px #c27e65}
-    span.s6 {font-kerning: none; color: #4689cc; background-color: #171818; -webkit-text-stroke: 0px #4689cc}
-    span.s7 {font-kerning: none; color: #d4d4d4; background-color: #171818; -webkit-text-stroke: 0px #d4d4d4}
-    span.s8 {font-kerning: none; color: #71c083; background-color: #171818; -webkit-text-stroke: 0px #71c083}
-    span.s9 {font-kerning: none; color: #a7c598; background-color: #171818; -webkit-text-stroke: 0px #a7c598}
-    span.s10 {font-kerning: none; color: #6d7378; background-color: #171818; -webkit-text-stroke: 0px #6d7378}
-    span.s11 {font-kerning: none}
-    span.s12 {font-kerning: none; color: #b76ff7; background-color: #171818; -webkit-text-stroke: 0px #b76ff7}
-    span.s13 {font-kerning: none; color: #36c0a0; background-color: #171818; -webkit-text-stroke: 0px #36c0a0}
-  </style>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Utility Billing System - Customer View</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        body {
+
+            font-family: 'Inter', sans-serif;
+
+            background-color: #f0f2f5; /* A slightly different, common UI background */
+
+        }
+
+        .card {
+
+            background-color: white;
+
+            border-radius: 0.75rem; /* Tailwind rounded-xl */
+
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Tailwind shadow-md */
+
+            padding: 1.5rem; /* p-6 */
+
+            margin-bottom: 1.5rem; /* mb-6 */
+
+        }
+
+        .card-title {
+
+            font-size: 1.25rem; /* text-xl */
+
+            font-weight: 600; /* font-semibold */
+
+            color: #1f2937; /* gray-800 */
+
+            margin-bottom: 1rem; /* mb-4 */
+
+            border-bottom: 1px solid #e5e7eb; /* border-gray-200 */
+
+            padding-bottom: 0.75rem; /* pb-3 */
+
+        }
+
+        .data-pair {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            padding-top: 0.5rem; /* py-2 */
+
+            padding-bottom: 0.5rem;
+
+            border-bottom: 1px solid #f3f4f6; /* border-gray-100 */
+
+        }
+
+        .data-pair:last-child {
+
+            border-bottom: none;
+
+        }
+
+        .data-label {
+
+            font-weight: 500; /* font-medium */
+
+            color: #4b5563; /* gray-600 */
+
+        }
+
+        .data-value {
+
+            color: #1f2937; /* gray-800 */
+
+            text-align: right;
+
+        }
+
+        .balance-prominent {
+
+            font-size: 2.25rem; /* text-4xl */
+
+            font-weight: 700; /* font-bold */
+
+            color: #10b981; /* emerald-500 for positive balance, could be red for overdue */
+
+        }
+
+        .due-date-prominent {
+
+            color: #ef4444; /* red-500 */
+
+        }
+
+        .button-primary {
+
+            background-color: #3b82f6; /* blue-500 */
+
+            color: white;
+
+            padding: 0.75rem 1.5rem; /* py-3 px-6 */
+
+            border-radius: 0.5rem; /* rounded-lg */
+
+            font-weight: 500; /* font-medium */
+
+            text-align: center;
+
+            transition: background-color 0.3s;
+
+        }
+
+        .button-primary:hover {
+
+            background-color: #2563eb; /* blue-600 */
+
+        }
+
+        .header {
+
+            background-color: #1f2937; /* gray-800 */
+
+            color: white;
+
+            padding: 1.5rem; /* p-6 */
+
+            border-bottom: 4px solid #3b82f6; /* blue-500 */
+
+        }
+
+        .footer {
+
+            text-align: center;
+
+            padding: 1.5rem;
+
+            color: #6b7280; /* gray-500 */
+
+            font-size: 0.875rem; /* text-sm */
+
+        }
+
+        .bill-item-summary {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            font-weight: 500; /* font-medium */
+
+        }
+
+        .bill-line-items {
+
+            padding-left: 1rem; /* pl-4 */
+
+            margin-top: 0.5rem; /* mt-2 */
+
+            margin-bottom: 0.75rem; /* mb-3 */
+
+            font-size: 0.875rem; /* text-sm */
+
+            color: #4b5563; /* gray-600 */
+
+        }
+
+        .bill-line-item {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            padding-top: 0.25rem; /* pt-1 */
+
+            padding-bottom: 0.25rem; /* pb-1 */
+
+        }
+
+        .line-item-credit {
+
+            color: #10b981; /* emerald-500 for credits */
+
+        }
+
+    </style>
+
 </head>
-<body>
-<p class="p1"><span class="s1">&lt;!DOCTYPE</span><span class="s2"> html</span><span class="s1">&gt;</span></p>
-<p class="p1"><span class="s3">&lt;</span><span class="s1">html</span><span class="s4"> </span><span class="s2">lang</span><span class="s3">=</span><span class="s5">"en"</span><span class="s3">&gt;</span></p>
-<p class="p1"><span class="s3">&lt;</span><span class="s1">head</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">meta</span><span class="s4"> </span><span class="s1">charset</span><span class="s3">=</span><span class="s5">"UTF-8"</span><span class="s3">&gt;</span></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">meta</span><span class="s4"> </span><span class="s2">name</span><span class="s3">=</span><span class="s1">"viewport"</span><span class="s4"> </span><span class="s2">content</span><span class="s3">=</span><span class="s1">"width=device-width, initial-scale=1.0"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">title</span><span class="s3">&gt;</span><span class="s1">Utility Billing System - Customer View</span><span class="s3">&lt;/</span><span class="s6">title</span><span class="s3">&gt;</span></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">script</span><span class="s4"> </span><span class="s2">src</span><span class="s3">=</span><span class="s1">"https://cdn.tailwindcss.com"</span><span class="s3">&gt;&lt;/</span><span class="s6">script</span><span class="s3">&gt;</span></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">link</span><span class="s4"> </span><span class="s2">href</span><span class="s3">=</span><span class="s1">"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"</span><span class="s4"> </span><span class="s2">rel</span><span class="s3">=</span><span class="s1">"stylesheet"</span><span class="s3">&gt;</span></p>
-<p class="p1"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s1">style</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s6">body</span><span class="s1"> </span><span class="s7">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">font-family:</span><span class="s1"> </span><span class="s8">'Inter'</span><span class="s7">,</span><span class="s1"> </span><span class="s5">sans-serif</span><span class="s7">;</span></p>
-<p class="p5"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s2">background-color:</span><span class="s4"> #f0f2f5</span><span class="s7">;</span><span class="s4"> </span><span class="s1">/* A slightly different, common UI background */</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">}</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s6">.card</span><span class="s1"> </span><span class="s7">{</span></p>
-<p class="p2"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s1">background-color:</span><span class="s4"> </span><span class="s5">white</span><span class="s7">;</span></p>
-<p class="p5"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s2">border-radius:</span><span class="s4"> </span><span class="s9">0.75rem</span><span class="s7">;</span><span class="s4"> </span><span class="s1">/* Tailwind rounded-xl */</span></p>
-<p class="p6"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s2">box-shadow:</span><span class="s4"> </span><span class="s1">0</span><span class="s4"> </span><span class="s1">4px</span><span class="s4"> </span><span class="s1">6px</span><span class="s4"> </span><span class="s1">-1px</span><span class="s4"> </span><span class="s5">rgba(</span><span class="s1">0</span><span class="s7">,</span><span class="s4"> </span><span class="s1">0</span><span class="s7">,</span><span class="s4"> </span><span class="s1">0</span><span class="s7">,</span><span class="s4"> </span><span class="s1">0.1</span><span class="s5">)</span><span class="s7">,</span><span class="s4"> </span><span class="s1">0</span><span class="s4"> </span><span class="s1">2px</span><span class="s4"> </span><span class="s1">4px</span><span class="s4"> </span><span class="s1">-1px</span><span class="s4"> </span><span class="s5">rgba(</span><span class="s1">0</span><span class="s7">,</span><span class="s4"> </span><span class="s1">0</span><span class="s7">,</span><span class="s4"> </span><span class="s1">0</span><span class="s7">,</span><span class="s4"> </span><span class="s1">0.06</span><span class="s5">)</span><span class="s7">;</span><span class="s4"> </span><span class="s10">/* Tailwind shadow-md */</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">padding:</span><span class="s1"> </span><span class="s9">1.5rem</span><span class="s7">;</span><span class="s1"> </span><span class="s10">/* p-6 */</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">margin-bottom:</span><span class="s1"> </span><span class="s9">1.5rem</span><span class="s7">;</span><span class="s1"> </span><span class="s10">/* mb-6 */</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">}</span></p>
-<p class="p1"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">.card-title</span><span class="s4"> </span><span class="s7">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">font-size:</span><span class="s1"> </span><span class="s9">1.25rem</span><span class="s7">;</span><span class="s1"> </span><span class="s10">/* text-xl */</span></p>
-<p class="p5"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s2">font-weight:</span><span class="s4"> </span><span class="s9">600</span><span class="s7">;</span><span class="s4"> </span><span class="s1">/* font-semibold */</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">color:</span><span class="s1"> #1f2937</span><span class="s7">;</span><span class="s1"> </span><span class="s10">/* gray-800 */</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">margin-bottom:</span><span class="s1"> </span><span class="s9">1rem</span><span class="s7">;</span><span class="s1"> </span><span class="s10">/* mb-4 */</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">border-bottom:</span><span class="s1"> </span><span class="s9">1px</span><span class="s1"> </span><span class="s5">solid</span><span class="s1"> #e5e7eb</span><span class="s7">;</span><span class="s1"> </span><span class="s10">/* border-gray-200 */</span></p>
-<p class="p2"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s1">padding-bottom:</span><span class="s4"> </span><span class="s9">0.75rem</span><span class="s7">;</span><span class="s4"> </span><span class="s10">/* pb-3 */</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">}</span></p>
-<p class="p1"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">.data-pair</span><span class="s4"> </span><span class="s7">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">display:</span><span class="s1"> </span><span class="s5">flex</span><span class="s7">;</span></p>
-<p class="p2"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s1">justify-content:</span><span class="s4"> </span><span class="s5">space-between</span><span class="s7">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">padding-top:</span><span class="s1"> </span><span class="s9">0.5rem</span><span class="s7">;</span><span class="s1"> </span><span class="s10">/* py-2 */</span></p>
-<p class="p2"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s1">padding-bottom:</span><span class="s4"> </span><span class="s9">0.5rem</span><span class="s7">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">border-bottom:</span><span class="s1"> </span><span class="s9">1px</span><span class="s1"> </span><span class="s5">solid</span><span class="s1"> #f3f4f6</span><span class="s7">;</span><span class="s1"> </span><span class="s10">/* border-gray-100 */</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">}</span></p>
-<p class="p1"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">.data-pair:last-child</span><span class="s4"> </span><span class="s7">{</span></p>
-<p class="p2"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s1">border-bottom:</span><span class="s4"> </span><span class="s5">none</span><span class="s7">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">}</span></p>
-<p class="p1"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">.data-label</span><span class="s4"> </span><span class="s7">{</span></p>
-<p class="p5"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s2">font-weight:</span><span class="s4"> </span><span class="s9">500</span><span class="s7">;</span><span class="s4"> </span><span class="s1">/* font-medium */</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">color:</span><span class="s1"> #4b5563</span><span class="s7">;</span><span class="s1"> </span><span class="s10">/* gray-600 */</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">}</span></p>
-<p class="p1"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">.data-value</span><span class="s4"> </span><span class="s7">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">color:</span><span class="s1"> #1f2937</span><span class="s7">;</span><span class="s1"> </span><span class="s10">/* gray-800 */</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">text-align:</span><span class="s1"> </span><span class="s5">right</span><span class="s7">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">}</span></p>
-<p class="p1"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">.balance-prominent</span><span class="s4"> </span><span class="s7">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">font-size:</span><span class="s1"> </span><span class="s9">2.25rem</span><span class="s7">;</span><span class="s1"> </span><span class="s10">/* text-4xl */</span></p>
-<p class="p5"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s2">font-weight:</span><span class="s4"> </span><span class="s9">700</span><span class="s7">;</span><span class="s4"> </span><span class="s1">/* font-bold */</span></p>
-<p class="p5"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s2">color:</span><span class="s4"> #10b981</span><span class="s7">;</span><span class="s4"> </span><span class="s1">/* emerald-500 for positive balance, could be red for overdue */</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">}</span></p>
-<p class="p1"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">.due-date-prominent</span><span class="s4"> </span><span class="s7">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">color:</span><span class="s1"> #ef4444</span><span class="s7">;</span><span class="s1"> </span><span class="s10">/* red-500 */</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">}</span></p>
-<p class="p1"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">.button-primary</span><span class="s4"> </span><span class="s7">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">background-color:</span><span class="s1"> #3b82f6</span><span class="s7">;</span><span class="s1"> </span><span class="s10">/* blue-500 */</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">color:</span><span class="s1"> </span><span class="s5">white</span><span class="s7">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">padding:</span><span class="s1"> </span><span class="s9">0.75rem</span><span class="s1"> </span><span class="s9">1.5rem</span><span class="s7">;</span><span class="s1"> </span><span class="s10">/* py-3 px-6 */</span></p>
-<p class="p5"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s2">border-radius:</span><span class="s4"> </span><span class="s9">0.5rem</span><span class="s7">;</span><span class="s4"> </span><span class="s1">/* rounded-lg */</span></p>
-<p class="p5"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s2">font-weight:</span><span class="s4"> </span><span class="s9">500</span><span class="s7">;</span><span class="s4"> </span><span class="s1">/* font-medium */</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">text-align:</span><span class="s1"> </span><span class="s5">center</span><span class="s7">;</span></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s2">transition:</span><span class="s4"> </span><span class="s1">background-color</span><span class="s4"> </span><span class="s9">0.3s</span><span class="s7">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">}</span></p>
-<p class="p1"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">.button-primary:hover</span><span class="s4"> </span><span class="s7">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">background-color:</span><span class="s1"> #2563eb</span><span class="s7">;</span><span class="s1"> </span><span class="s10">/* blue-600 */</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">}</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s6">.header</span><span class="s1"> </span><span class="s7">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">background-color:</span><span class="s1"> #1f2937</span><span class="s7">;</span><span class="s1"> </span><span class="s10">/* gray-800 */</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">color:</span><span class="s1"> </span><span class="s5">white</span><span class="s7">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">padding:</span><span class="s1"> </span><span class="s9">1.5rem</span><span class="s7">;</span><span class="s1"> </span><span class="s10">/* p-6 */</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">border-bottom:</span><span class="s1"> </span><span class="s9">4px</span><span class="s1"> </span><span class="s5">solid</span><span class="s1"> #3b82f6</span><span class="s7">;</span><span class="s1"> </span><span class="s10">/* blue-500 */</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">}</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s6">.footer</span><span class="s1"> </span><span class="s7">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">text-align:</span><span class="s1"> </span><span class="s5">center</span><span class="s7">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">padding:</span><span class="s1"> </span><span class="s9">1.5rem</span><span class="s7">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">color:</span><span class="s1"> #6b7280</span><span class="s7">;</span><span class="s1"> </span><span class="s10">/* gray-500 */</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">font-size:</span><span class="s1"> </span><span class="s9">0.875rem</span><span class="s7">;</span><span class="s1"> </span><span class="s10">/* text-sm */</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">}</span></p>
-<p class="p1"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">.bill-item-summary</span><span class="s4"> </span><span class="s7">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">display:</span><span class="s1"> </span><span class="s5">flex</span><span class="s7">;</span></p>
-<p class="p2"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s1">justify-content:</span><span class="s4"> </span><span class="s5">space-between</span><span class="s7">;</span></p>
-<p class="p5"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s2">font-weight:</span><span class="s4"> </span><span class="s9">500</span><span class="s7">;</span><span class="s4"> </span><span class="s1">/* font-medium */</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">}</span></p>
-<p class="p1"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">.bill-line-items</span><span class="s4"> </span><span class="s7">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">padding-left:</span><span class="s1"> </span><span class="s9">1rem</span><span class="s7">;</span><span class="s1"> </span><span class="s10">/* pl-4 */</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">margin-top:</span><span class="s1"> </span><span class="s9">0.5rem</span><span class="s7">;</span><span class="s1"> </span><span class="s10">/* mt-2 */</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">margin-bottom:</span><span class="s1"> </span><span class="s9">0.75rem</span><span class="s7">;</span><span class="s1"> </span><span class="s10">/* mb-3 */</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">font-size:</span><span class="s1"> </span><span class="s9">0.875rem</span><span class="s7">;</span><span class="s1"> </span><span class="s10">/* text-sm */</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">color:</span><span class="s1"> #4b5563</span><span class="s7">;</span><span class="s1"> </span><span class="s10">/* gray-600 */</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">}</span></p>
-<p class="p1"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">.bill-line-item</span><span class="s4"> </span><span class="s7">{</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">display:</span><span class="s1"> </span><span class="s5">flex</span><span class="s7">;</span></p>
-<p class="p2"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s1">justify-content:</span><span class="s4"> </span><span class="s5">space-between</span><span class="s7">;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">padding-top:</span><span class="s1"> </span><span class="s9">0.25rem</span><span class="s7">;</span><span class="s1"> </span><span class="s10">/* pt-1 */</span></p>
-<p class="p2"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s1">padding-bottom:</span><span class="s4"> </span><span class="s9">0.25rem</span><span class="s7">;</span><span class="s4"> </span><span class="s10">/* pb-1 */</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">}</span></p>
-<p class="p1"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">.line-item-credit</span><span class="s4"> </span><span class="s7">{</span></p>
-<p class="p5"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s2">color:</span><span class="s4"> #10b981</span><span class="s7">;</span><span class="s4"> </span><span class="s1">/* emerald-500 for credits */</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">}</span></p>
-<p class="p1"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s1">style</span><span class="s3">&gt;</span></p>
-<p class="p1"><span class="s3">&lt;/</span><span class="s1">head</span><span class="s3">&gt;</span></p>
-<p class="p3"><span class="s3">&lt;</span><span class="s6">body</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"min-h-screen"</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">header</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"header"</span><span class="s3">&gt;</span></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"container mx-auto flex justify-between items-center"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s6">h1</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"text-2xl sm:text-3xl font-bold"</span><span class="s3">&gt;</span><span class="s1">Utility Billing Portal</span><span class="s3">&lt;/</span><span class="s6">h1</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"text-sm mr-4"</span><span class="s3">&gt;</span><span class="s1">Welcome, Jane Doe!</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s6">a</span><span class="s4"> </span><span class="s2">href</span><span class="s3">=</span><span class="s1">"#"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-sm hover:underline"</span><span class="s3">&gt;</span><span class="s4">Logout</span><span class="s3">&lt;/</span><span class="s6">a</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p1"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s1">header</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">main</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"container mx-auto p-4 sm:p-6 lg:p-8"</span><span class="s3">&gt;</span></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"grid grid-cols-1 lg:grid-cols-3 gap-6"</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"lg:col-span-2"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s6">section</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"card"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">h2</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"card-title"</span><span class="s3">&gt;</span><span class="s1">Account Balance</span><span class="s3">&lt;/</span><span class="s6">h2</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"text-center mb-6"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">p</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"text-gray-500 text-sm"</span><span class="s3">&gt;</span><span class="s1">Current Amount Due</span><span class="s3">&lt;/</span><span class="s6">p</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">p</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"balance-prominent"</span><span class="s3">&gt;</span><span class="s1">$125.50</span><span class="s3">&lt;/</span><span class="s6">p</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">p</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"mt-1"</span><span class="s3">&gt;</span><span class="s1">Due Date: </span><span class="s3">&lt;</span><span class="s6">span</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"due-date-prominent font-semibold"</span><span class="s3">&gt;</span><span class="s1">June 15, 2025</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;&lt;/</span><span class="s6">p</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"data-pair"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"data-label"</span><span class="s3">&gt;</span><span class="s1">Last Payment Amount:</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"data-value"</span><span class="s3">&gt;</span><span class="s1">$98.70</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"data-pair"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"data-label"</span><span class="s3">&gt;</span><span class="s1">Last Payment Date:</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"data-value"</span><span class="s3">&gt;</span><span class="s1">May 5, 2025</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"mt-6"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">button</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"button-primary w-full sm:w-auto"</span><span class="s3">&gt;</span><span class="s1">Make a Payment</span><span class="s3">&lt;/</span><span class="s6">button</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s6">section</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s6">section</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"card"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">h2</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"card-title"</span><span class="s3">&gt;</span><span class="s1">Recent Billing History</span><span class="s3">&lt;/</span><span class="s6">h2</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">ul</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"space-y-4"</span><span class="s3">&gt;</span></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">li</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"pb-3 border-b border-gray-100 last:border-b-0"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"bill-item-summary"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s3">&gt;</span><span class="s1">Bill - May 2025</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s3">&gt;</span><span class="s1">$125.50 </span><span class="s3">&lt;</span><span class="s6">a</span><span class="s1"> </span><span class="s2">href</span><span class="s3">=</span><span class="s5">"#"</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"text-blue-500 hover:underline ml-2 text-sm"</span><span class="s3">&gt;</span><span class="s1">View PDF</span><span class="s3">&lt;/</span><span class="s6">a</span><span class="s3">&gt;&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s6">ul</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"bill-line-items"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s6">li</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"bill-line-item"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s3">&gt;</span><span class="s1">Usage Charge (150 kWh @ $0.25)</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s3">&gt;</span><span class="s1">$37.50</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;/</span><span class="s6">li</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s6">li</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"bill-line-item"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s3">&gt;</span><span class="s1">Service Fee</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s3">&gt;</span><span class="s1">$90.00</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;/</span><span class="s6">li</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s6">li</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"bill-line-item"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s3">&gt;</span><span class="s1">Concession Payment</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"line-item-credit"</span><span class="s3">&gt;</span><span class="s1">-$2.00</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;/</span><span class="s6">li</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;/</span><span class="s6">ul</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s6">li</span><span class="s3">&gt;</span></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">li</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"pb-3 border-b border-gray-100 last:border-b-0"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"bill-item-summary"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s3">&gt;</span><span class="s1">Bill - April 2025</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s3">&gt;</span><span class="s1">$98.70 </span><span class="s3">&lt;</span><span class="s6">a</span><span class="s1"> </span><span class="s2">href</span><span class="s3">=</span><span class="s5">"#"</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"text-blue-500 hover:underline ml-2 text-sm"</span><span class="s3">&gt;</span><span class="s1">View PDF</span><span class="s3">&lt;/</span><span class="s6">a</span><span class="s3">&gt;&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s6">ul</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"bill-line-items"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s6">li</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"bill-line-item"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s3">&gt;</span><span class="s1">Usage Charge (120 kWh @ $0.25)</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s3">&gt;</span><span class="s1">$30.00</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;/</span><span class="s6">li</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s6">li</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"bill-line-item"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s3">&gt;</span><span class="s1">Service Fee</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s3">&gt;</span><span class="s1">$90.00</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;/</span><span class="s6">li</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                 </span></span><span class="s3">&lt;</span><span class="s6">li</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"bill-line-item"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s3">&gt;</span><span class="s1">Solar Feed-in Tariff</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"line-item-credit"</span><span class="s3">&gt;</span><span class="s1">-$21.30</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;/</span><span class="s6">li</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;/</span><span class="s6">ul</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s6">li</span><span class="s3">&gt;</span></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">li</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"pb-3 border-b border-gray-100 last:border-b-0"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"bill-item-summary"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s3">&gt;</span><span class="s1">Bill - March 2025</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s3">&gt;</span><span class="s1">$110.20 </span><span class="s3">&lt;</span><span class="s6">a</span><span class="s1"> </span><span class="s2">href</span><span class="s3">=</span><span class="s5">"#"</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"text-blue-500 hover:underline ml-2 text-sm"</span><span class="s3">&gt;</span><span class="s1">View PDF</span><span class="s3">&lt;/</span><span class="s6">a</span><span class="s3">&gt;&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s6">ul</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"bill-line-items"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s6">li</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"bill-line-item"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s3">&gt;</span><span class="s1">Usage Charge (145 kWh @ $0.25)</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s3">&gt;</span><span class="s1">$36.25</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;/</span><span class="s6">li</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s6">li</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"bill-line-item"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s3">&gt;</span><span class="s1">Service Fee</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s3">&gt;</span><span class="s1">$90.00</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;/</span><span class="s6">li</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s6">li</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"bill-line-item"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s3">&gt;</span><span class="s1">Late Payment Fee</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s3">&gt;</span><span class="s1">$5.00</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;/</span><span class="s6">li</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s6">li</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"bill-line-item"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s3">&gt;</span><span class="s1">Solar Feed-in Tariff</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"line-item-credit"</span><span class="s3">&gt;</span><span class="s1">-$21.05</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;/</span><span class="s6">li</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;/</span><span class="s6">ul</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s6">li</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">ul</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                     </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"mt-4 text-right"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">a</span><span class="s1"> </span><span class="s2">href</span><span class="s3">=</span><span class="s5">"#"</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"text-blue-500 hover:underline font-medium"</span><span class="s3">&gt;</span><span class="s1">View All Billing History</span><span class="s3">&lt;/</span><span class="s6">a</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s6">section</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"lg:col-span-1"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s6">section</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"card"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">h2</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"card-title"</span><span class="s3">&gt;</span><span class="s1">Customer Details</span><span class="s3">&lt;/</span><span class="s6">h2</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"data-pair"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"data-label"</span><span class="s3">&gt;</span><span class="s1">Customer ID:</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"data-value"</span><span class="s3">&gt;</span><span class="s1">CUST-0012345</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"data-pair"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"data-label"</span><span class="s3">&gt;</span><span class="s1">Name:</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"data-value"</span><span class="s3">&gt;</span><span class="s1">Jane M. Doe</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"data-pair"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"data-label"</span><span class="s3">&gt;</span><span class="s1">Contact Number:</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"data-value"</span><span class="s3">&gt;</span><span class="s1">(555) 123-4567</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"data-pair"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"data-label"</span><span class="s3">&gt;</span><span class="s1">Email:</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"data-value"</span><span class="s3">&gt;</span><span class="s1">jane.doe@example.com</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s6">section</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s6">section</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"card"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">h2</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"card-title"</span><span class="s3">&gt;</span><span class="s1">Supply Address</span><span class="s3">&lt;/</span><span class="s6">h2</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"data-pair"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"data-label"</span><span class="s3">&gt;</span><span class="s1">Street Address:</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"data-value"</span><span class="s3">&gt;</span><span class="s1">123 Energy Lane</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"data-pair"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"data-label"</span><span class="s3">&gt;</span><span class="s1">Suburb:</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"data-value"</span><span class="s3">&gt;</span><span class="s1">Power Town</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"data-pair"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"data-label"</span><span class="s3">&gt;</span><span class="s1">State:</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"data-value"</span><span class="s3">&gt;</span><span class="s1">VIC</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"data-pair"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"data-label"</span><span class="s3">&gt;</span><span class="s1">Postcode:</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">span</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"data-value"</span><span class="s3">&gt;</span><span class="s1">3000</span><span class="s3">&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s6">section</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                 </span></span><span class="s3">&lt;</span><span class="s6">section</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"card"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">h2</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"card-title"</span><span class="s3">&gt;</span><span class="s1">Quick Links</span><span class="s3">&lt;/</span><span class="s6">h2</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">ul</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"space-y-2"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">li</span><span class="s3">&gt;&lt;</span><span class="s6">a</span><span class="s1"> </span><span class="s2">href</span><span class="s3">=</span><span class="s5">"#"</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"text-blue-500 hover:underline"</span><span class="s3">&gt;</span><span class="s1">Report an Outage</span><span class="s3">&lt;/</span><span class="s6">a</span><span class="s3">&gt;&lt;/</span><span class="s6">li</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">li</span><span class="s3">&gt;&lt;</span><span class="s6">a</span><span class="s1"> </span><span class="s2">href</span><span class="s3">=</span><span class="s5">"#"</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"text-blue-500 hover:underline"</span><span class="s3">&gt;</span><span class="s1">Update Contact Details</span><span class="s3">&lt;/</span><span class="s6">a</span><span class="s3">&gt;&lt;/</span><span class="s6">li</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">li</span><span class="s3">&gt;&lt;</span><span class="s6">a</span><span class="s1"> </span><span class="s2">href</span><span class="s3">=</span><span class="s5">"#"</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"text-blue-500 hover:underline"</span><span class="s3">&gt;</span><span class="s1">View Usage Data</span><span class="s3">&lt;/</span><span class="s6">a</span><span class="s3">&gt;&lt;/</span><span class="s6">li</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">li</span><span class="s3">&gt;&lt;</span><span class="s6">a</span><span class="s1"> </span><span class="s2">href</span><span class="s3">=</span><span class="s5">"#"</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"text-blue-500 hover:underline"</span><span class="s3">&gt;</span><span class="s1">FAQs &amp; Support</span><span class="s3">&lt;/</span><span class="s6">a</span><span class="s3">&gt;&lt;/</span><span class="s6">li</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">ul</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s6">section</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s6">main</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">footer</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"footer"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;</span><span class="s6">p</span><span class="s3">&gt;</span><span class="s1">&amp;copy; </span><span class="s3">&lt;</span><span class="s6">span</span><span class="s1"> </span><span class="s2">id</span><span class="s3">=</span><span class="s5">"currentYear"</span><span class="s3">&gt;&lt;/</span><span class="s6">span</span><span class="s3">&gt;</span><span class="s1"> Your Utility Company. All rights reserved.</span><span class="s3">&lt;/</span><span class="s6">p</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;</span><span class="s6">p</span><span class="s3">&gt;</span><span class="s1">123 Utility Avenue, Power City | Contact Support: 1800 000 000</span><span class="s3">&lt;/</span><span class="s6">p</span><span class="s3">&gt;</span></p>
-<p class="p1"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s1">footer</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p1"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s1">script</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">// Set current year in footer</span></p>
-<p class="p4"><span class="s1"><span class="Apple-converted-space">        </span>document</span><span class="s7">.</span><span class="s1">getElementById</span><span class="s7">(</span><span class="s8">'currentYear'</span><span class="s7">).</span><span class="s1">textContent </span><span class="s7">=</span><span class="s1"> </span><span class="s12">new</span><span class="s1"> </span><span class="s13">Date</span><span class="s7">().</span><span class="s1">getFullYear</span><span class="s7">();</span></p>
-<p class="p1"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s1">script</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s11"></span><br></p>
-<p class="p1"><span class="s3">&lt;/</span><span class="s1">body</span><span class="s3">&gt;</span></p>
-<p class="p1"><span class="s3">&lt;/</span><span class="s1">html</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s11"></span><br></p>
+
+<body class="min-h-screen">
+
+
+
+    <header class="header">
+
+        <div class="container mx-auto flex justify-between items-center">
+
+            <h1 class="text-2xl sm:text-3xl font-bold">Utility Billing Portal</h1>
+
+            <div>
+
+                <span class="text-sm mr-4">Welcome, Jane Doe!</span>
+
+                <a href="#" class="text-sm hover:underline">Logout</a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <main class="container mx-auto p-4 sm:p-6 lg:p-8">
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+
+
+            <div class="lg:col-span-2">
+
+                <section class="card">
+
+                    <h2 class="card-title">Account Balance</h2>
+
+                    <div class="text-center mb-6">
+
+                        <p class="text-gray-500 text-sm">Current Amount Due</p>
+
+                        <p class="balance-prominent">$125.50</p>
+
+                        <p class="mt-1">Due Date: <span class="due-date-prominent font-semibold">June 15, 2025</span></p>
+
+                    </div>
+
+                    <div class="data-pair">
+
+                        <span class="data-label">Last Payment Amount:</span>
+
+                        <span class="data-value">$98.70</span>
+
+                    </div>
+
+                    <div class="data-pair">
+
+                        <span class="data-label">Last Payment Date:</span>
+
+                        <span class="data-value">May 5, 2025</span>
+
+                    </div>
+
+                    <div class="mt-6">
+
+                        <button class="button-primary w-full sm:w-auto">Make a Payment</button>
+
+                    </div>
+
+                </section>
+
+
+
+                <section class="card">
+
+                    <h2 class="card-title">Recent Billing History</h2>
+
+                    <ul class="space-y-4">
+
+                        <li class="pb-3 border-b border-gray-100 last:border-b-0">
+
+                            <div class="bill-item-summary">
+
+                                <span>Bill - May 2025</span>
+
+                                <span>$125.50 <a href="#" class="text-blue-500 hover:underline ml-2 text-sm">View PDF</a></span>
+
+                            </div>
+
+                            <ul class="bill-line-items">
+
+                                <li class="bill-line-item">
+
+                                    <span>Usage Charge (150 kWh @ $0.25)</span>
+
+                                    <span>$37.50</span>
+
+                                </li>
+
+                                <li class="bill-line-item">
+
+                                    <span>Service Fee</span>
+
+                                    <span>$90.00</span>
+
+                                </li>
+
+                                <li class="bill-line-item">
+
+                                    <span>Concession Payment</span>
+
+                                    <span class="line-item-credit">-$2.00</span>
+
+                                </li>
+
+                            </ul>
+
+                        </li>
+
+                        <li class="pb-3 border-b border-gray-100 last:border-b-0">
+
+                            <div class="bill-item-summary">
+
+                                <span>Bill - April 2025</span>
+
+                                <span>$98.70 <a href="#" class="text-blue-500 hover:underline ml-2 text-sm">View PDF</a></span>
+
+                            </div>
+
+                            <ul class="bill-line-items">
+
+                                <li class="bill-line-item">
+
+                                    <span>Usage Charge (120 kWh @ $0.25)</span>
+
+                                    <span>$30.00</span>
+
+                                </li>
+
+                                <li class="bill-line-item">
+
+                                    <span>Service Fee</span>
+
+                                    <span>$90.00</span>
+
+                                </li>
+
+                                 <li class="bill-line-item">
+
+                                    <span>Solar Feed-in Tariff</span>
+
+                                    <span class="line-item-credit">-$21.30</span>
+
+                                </li>
+
+                            </ul>
+
+                        </li>
+
+                        <li class="pb-3 border-b border-gray-100 last:border-b-0">
+
+                            <div class="bill-item-summary">
+
+                                <span>Bill - March 2025</span>
+
+                                <span>$110.20 <a href="#" class="text-blue-500 hover:underline ml-2 text-sm">View PDF</a></span>
+
+                            </div>
+
+                            <ul class="bill-line-items">
+
+                                <li class="bill-line-item">
+
+                                    <span>Usage Charge (145 kWh @ $0.25)</span>
+
+                                    <span>$36.25</span>
+
+                                </li>
+
+                                <li class="bill-line-item">
+
+                                    <span>Service Fee</span>
+
+                                    <span>$90.00</span>
+
+                                </li>
+
+                                <li class="bill-line-item">
+
+                                    <span>Late Payment Fee</span>
+
+                                    <span>$5.00</span>
+
+                                </li>
+
+                                <li class="bill-line-item">
+
+                                    <span>Solar Feed-in Tariff</span>
+
+                                    <span class="line-item-credit">-$21.05</span>
+
+                                </li>
+
+                            </ul>
+
+                        </li>
+
+                    </ul>
+
+                     <div class="mt-4 text-right">
+
+                        <a href="#" class="text-blue-500 hover:underline font-medium">View All Billing History</a>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+
+            <div class="lg:col-span-1">
+
+                <section class="card">
+
+                    <h2 class="card-title">Customer Details</h2>
+
+                    <div class="data-pair">
+
+                        <span class="data-label">Customer ID:</span>
+
+                        <span class="data-value">CUST-0012345</span>
+
+                    </div>
+
+                    <div class="data-pair">
+
+                        <span class="data-label">Name:</span>
+
+                        <span class="data-value">Jane M. Doe</span>
+
+                    </div>
+
+                    <div class="data-pair">
+
+                        <span class="data-label">Contact Number:</span>
+
+                        <span class="data-value">(555) 123-4567</span>
+
+                    </div>
+
+                    <div class="data-pair">
+
+                        <span class="data-label">Email:</span>
+
+                        <span class="data-value">jane.doe@example.com</span>
+
+                    </div>
+
+                </section>
+
+
+
+                <section class="card">
+
+                    <h2 class="card-title">Supply Address</h2>
+
+                    <div class="data-pair">
+
+                        <span class="data-label">Street Address:</span>
+
+                        <span class="data-value">123 Energy Lane</span>
+
+                    </div>
+
+                    <div class="data-pair">
+
+                        <span class="data-label">Suburb:</span>
+
+                        <span class="data-value">Power Town</span>
+
+                    </div>
+
+                    <div class="data-pair">
+
+                        <span class="data-label">State:</span>
+
+                        <span class="data-value">VIC</span>
+
+                    </div>
+
+                    <div class="data-pair">
+
+                        <span class="data-label">Postcode:</span>
+
+                        <span class="data-value">3000</span>
+
+                    </div>
+
+                </section>
+
+
+
+                 <section class="card">
+
+                    <h2 class="card-title">Quick Links</h2>
+
+                    <ul class="space-y-2">
+
+                        <li><a href="#" class="text-blue-500 hover:underline">Report an Outage</a></li>
+
+                        <li><a href="#" class="text-blue-500 hover:underline">Update Contact Details</a></li>
+
+                        <li><a href="#" class="text-blue-500 hover:underline">View Usage Data</a></li>
+
+                        <li><a href="#" class="text-blue-500 hover:underline">FAQs & Support</a></li>
+
+                    </ul>
+
+                </section>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+
+    <footer class="footer">
+
+        <p>&copy; <span id="currentYear"></span> Your Utility Company. All rights reserved.</p>
+
+        <p>123 Utility Avenue, Power City | Contact Support: 1800 000 000</p>
+
+    </footer>
+
+
+
+    <script>
+
+        // Set current year in footer
+
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    </script>
+
+
+
 </body>
+
 </html>
+
